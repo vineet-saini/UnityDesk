@@ -1,3 +1,4 @@
+
 const Task = require("../models/taskModel");
 
 const createTask = async (req,res)=>{
@@ -33,4 +34,3 @@ const createTask = async (req,res)=>{
     }
 }
 
-module.exports = {createTask};

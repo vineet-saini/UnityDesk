@@ -1,3 +1,4 @@
+
 const { default: mongoose } = require("mongoose");
 const Team = require("../models/teamModel");
 
@@ -55,3 +56,4 @@ const getTeams = async(req,res)=>{
 }
 
 module.exports = {createTeam,getTeams};
+
