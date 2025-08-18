@@ -14,6 +14,27 @@ const UserSchema = new Schema({
     password:{
         type:String,
         required:true
+    },
+    role:{
+        type:String,
+        enum:["admin","project_manager","member"],
+        default:"member"
+    },
+    teams:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Team"
+        }
+    ],
+    projects:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Project"
+        }
+    ],
+    createdAt:{
+        type:Date,
+        default:Date.now
     }
 },{timestamps:true})
 
