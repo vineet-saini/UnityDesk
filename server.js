@@ -1,10 +1,13 @@
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
 const connectDb = require("./config/database");
+
 const userRouter = require("./routes/userRoute");
 const teamRouter = require("./routes/teamRoute");
-const projectRouter = require("./routes/projectRoute");
-const taskRouter = require("./routes/taskRoute");
+const adminRouter = require("./routes/adminRoute");  // from your branch
+const projectRouter = require("./routes/projectRoute"); // from main
+const taskRouter = require("./routes/taskRoute");       // from main
+
 
 const app = express();
 
@@ -13,6 +16,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 4888;
 
 app.use("/api/user",userRouter);
+app.use("/api/admin", adminRouter);
 app.use("/api/team",teamRouter);
 
 app.use("/api/project",projectRouter);

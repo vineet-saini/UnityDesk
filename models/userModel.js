@@ -1,42 +1,28 @@
 const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-const {Schema} = mongoose;
-
-const UserSchema = new Schema({
-    name:{
-        type:String,
-        required:true
-    },
-    emailId:{
-        type:String,
-        required:true
-    },
-    password:{
-        type:String,
-        required:true
-    },
-    role:{
-        type:String,
-        enum:["admin","project_manager","member"],
-        default:"member"
-    },
-    teams:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Team"
-        }
-    ],
-    projects:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Project"
-        }
-    ],
-    createdAt:{
-        type:Date,
-        default:Date.now
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },  // ✅ use email
+  password: { type: String, required: true },
+  gender: { type: String },
+  role: { 
+    type: String, 
+    enum: ["admin", "project_manager", "member"], // ✅ use full enum from main
+    default: "member" 
+  },
+  teams: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Team"
     }
-},{timestamps:true})
+  ],
+  projects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project"
+    }
+  ]
+}, { timestamps: true }); // ✅ covers createdAt/updatedAt automatically
 
-module.exports = mongoose.model("User",UserSchema);
-
+module.exports = mongoose.model("User", userSchema);
