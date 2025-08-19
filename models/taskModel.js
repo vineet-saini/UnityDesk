@@ -1,34 +1,38 @@
+
 const mongoose = require("mongoose");
 
 const {Schema} = mongoose;
 
-const TeamSchema = new Schema({
-    teamName:{
+const TaskSchema = new Schema({
+    title:{
         type:String,
         required:true
     },
     description:{
         type:String,
-        required:true
+        
     },
-    members:[{
+    assignedTo:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
-    }],
-    projects:[{
+    },
+    project:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Project"
-    }],
-    createdBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+    },
+    status:{
+        type:String,
+        enum:["todo","in-progress","done"],
+        default:"todo"
+    },
+    dueDate:{
+        type:Date
     },
     createdAt:{
         type:Date,
-        default:Date.now
+        default : Date.now
     }
+
 })
 
-
-module.exports = mongoose.model("Teams",TeamSchema);
-
+module.exports = mongoose.model("Tasks",TaskSchema);
