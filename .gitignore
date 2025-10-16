@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 /frontend/node_modules
@@ -28,3 +29,7 @@ yarn-error.log*
 ._*
 .Spotlight-V100
 .Trashes
+=======
+node_modules
+.env
+>>>>>>> e774f748410077dab20a24861221947a1fc7090a
